@@ -13,7 +13,16 @@ import (
 	"github.com/asciifaceman/incremental-emails/pkg/data"
 )
 
+// New returns a new Game construct
+func New(version string) *Game {
+	return &Game{
+		Version: version,
+	}
+}
+
+// Game is our core game wrapper from whence all things come
 type Game struct {
+	Version     string
 	Application fyne.App
 	Backend     *data.Backend
 	Player      *data.Player
@@ -116,7 +125,7 @@ func (g *Game) AnEmail(text string) *fyne.Container {
 }
 
 func (g *Game) MainGameWindow() {
-	w := g.Application.NewWindow("EmailOS v0.0.1: Incremental Emails")
+	w := g.Application.NewWindow(fmt.Sprintf("EmailOS v%s: Incremental Emails", g.Version))
 	w.Resize(fyne.NewSize(512+256, 512+256))
 	w.CenterOnScreen()
 
