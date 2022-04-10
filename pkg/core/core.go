@@ -46,6 +46,9 @@ func (g *Game) Run() {
 	g.Application.Run()
 }
 
+//
+// NewGame is a window that the game launches with, inviting the player to enter their fictional name and email
+// it only appears if there is no found save game
 func (g *Game) NewGame() {
 	w := g.Application.NewWindow("New Game")
 	g.BuildWindows()
@@ -124,6 +127,8 @@ func (g *Game) AnEmail(text string) *fyne.Container {
 	return cont
 }
 
+//
+// MainGameWindow is the wrapper around the primary gameplay space - the window that joins the lifecycle of the game
 func (g *Game) MainGameWindow() {
 	w := g.Application.NewWindow(fmt.Sprintf("EmailOS v%s: Incremental Emails", g.Version))
 	w.Resize(fyne.NewSize(512+256, 512+256))
@@ -150,6 +155,7 @@ func (g *Game) MainGameWindow() {
 	w.Show()
 }
 
+// MainEmailWindow is a subwindow within MainGameWindow which presents a view of emails roughly correlating with gameplay
 func (g *Game) MainEmailWindow() *fyne.Container {
 
 	toolbar := widget.NewToolbar(
